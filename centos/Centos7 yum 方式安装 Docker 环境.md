@@ -76,3 +76,67 @@ CentOS Linux release 7.6.1810 (Core)
 ```
 
 至此，Docker环境搭建完成。
+
+
+
+---
+
+# Docker配置加速器
+
+> 我们国内使用官方Docker Hub仓库实在是太慢了，很影响效率
+
+`使用命令编辑文件：`
+
+```shell
+vim /etc/docker/daemon.json
+```
+
+`加入下面的数据：`
+
+```shell
+{
+  "registry-mirrors": ["https://registry.docker-cn.com"]
+}
+```
+
+`如果你是腾讯云的服务器那么请加入：`
+
+```shell
+{
+  "registry-mirrors": ["https://mirror.ccs.tencentyun.com"]
+}
+```
+
+> 阿里云的服务器请查看：https://yq.aliyun.com/articles/29941
+
+`wq保存退出：`
+
+`执行命令生效：`
+
+```shell
+systemctl daemon-reload
+systemctl restart docker
+```
+
+以上两个源，我都测试过，如果你是腾讯云那么肯定用腾讯云的源最好，阿里同样，速度飞快 image 秒 pull。
+
+---
+
+
+
+# Centos7 安装 docker-compose
+
+
+
+#### 1. 安装源
+
+```bash
+yum install -y epel-release
+```
+
+#### 2. 安装docker-compose
+
+```bash
+yum install docker-compose
+```
+
